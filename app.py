@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 
 # Load the model
-with open('./model/heart_disease_model.pkl', 'rb') as f:
+with open('./heart_disease_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Title and description
