@@ -9,31 +9,31 @@ with open('./heart_disease_model.pkl', 'rb') as f:
 
 # Title and description
 st.title("Heart Disease Prediction App")
-st.write("Enter the fields to get the results: ")
 
+params = st.experimental_get_query_params()
 # Input fields for user data
-age = st.slider("age", 1, 100, 50)
-sex = st.slider("sex ", 0, 1, 0)
-cp = st.slider("cp", 1, 10, 2)
-trestbps = st.slider("trestbps", 100, 200, 120)
-chol = st.slider("chol", 100, 300, 200)
-fbs = st.slider("fbs", 0, 1, 0)
-restecg = st.slider("restecg", 0,1,0)
-thalach = st.slider("thalach", 100, 200, 150)
-exang = st.slider("exang", 0, 1, 0)
-oldpeak = st.slider("oldpeak", 0.0, 7.0, 1.3)
-slope = st.slider("slope", 0, 3, 2)
-ca = st.slider("ca", 0, 4 , 2)
-thal = st.slider("thal", 0 , 5, 2)
+if 'age' in params and 'sex' in params and 'cp' in params and 'trest' in params and 'chol' in params and 'fbs' in params and 'rest' in params and 'thala' in params and 'exang' in params and 'oldpeak' in params and 'slope' in params and 'ca' in params and 'thal' in params:
+    # Convert parameters to floats
+    age = float(params['age'][0])
+    sex = float(params['sex'][0])
+    cp = float(params['cp'][0])
+    trest = float(params['trest'][0])
+    chol = float(params['chol'][0])
+    fbs = float(params['fbs'][0])
+    rest = float(params['rest'][0])
+    thala = float(params['thala'][0])
+    exang = float(params['exang'][0])
+    oldpeak = float(params['oldpeak'][0])
+    slope = float(params['slope'][0])
+    ca = float(params['ca'][0])
+    thal = float(params['thal'][0])
 
-# Prediction button
-if st.button("Predict"):
+
     # Create a NumPy array for model input
-    input_data = np.array([[age, sex, cp, trestbps,chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-
+    input_data = np.array([[age, sex, cp, trest ,chol, fbs, rest, thala, exang, oldpeak, slope, ca, thal]])
     # Make a prediction
     prediction = model.predict(input_data)
     if(prediction[0] == 1):
-        st.write("The person is having a heart disease")
+        st.write("This person is having a heart disease")
     else:
-        st.write("The person is not having a heart disease")
+        st.write("This person is not having a heart disease")
