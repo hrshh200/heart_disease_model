@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)  # Allow cross-origin requests
 
 # Create a prediction endpoint
-@app.route('/predict', methods=['POST'])
+@app.route('/', methods=['POST'])
 def predict():
     data = request.get_json()  # Get JSON data from the request
     input_data = np.array([[data['age'], data['sex'], data['cp'], data['trest'], data['chol'],
